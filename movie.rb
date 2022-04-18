@@ -14,8 +14,12 @@ class Movie
     @actors = hash[:actors]
   end
 
-  # 5.3.2
-  def has_genre?(field)
-    @genre.include?(field)
+  # 5.3.2 # 5.5.1
+  def has_genre?(field, access_genre)
+    if access_genre.include?(field) == false
+      raise ArgumentError, 'Wrong argument'
+    else
+      @genre.include?(field)
+    end
   end
 end
