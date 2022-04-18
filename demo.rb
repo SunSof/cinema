@@ -3,7 +3,7 @@ movie_collection = MovieCollection.new
 available_genres = movie_collection.available_genres
 first_film = movie_collection.all.first
 begin
-  first_film.has_genre?("Comedy")
+  first_film.has_genre?('Comedy')
 rescue ArgumentError => e
   puts e.messag
 end
