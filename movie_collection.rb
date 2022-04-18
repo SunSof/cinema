@@ -53,7 +53,6 @@ class MovieCollection
   end
 
   def available_genres
-    all_genre = all.map { |el| el.genre }
-    all_genre.join(',').split(',').uniq
+    all.map(&:genre).join(',').split(',').uniq
   end
 end
