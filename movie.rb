@@ -15,10 +15,10 @@ class Movie
   end
 
   # 5.3.2 # 5.5.1
-  def has_genre?(field, access_genre)
-    if access_genre.include?(field) == false
-      raise ArgumentError, 'Wrong argument'
-    else
+  def has_genre?(field, available_genres = ["Comedy", "Crime", "Art"])
+    if available_genres.include?(field) == false
+      raise ArgumentError, 'Genre does not exist'
+    else  
       @genre.include?(field)
     end
   end
