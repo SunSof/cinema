@@ -1,5 +1,5 @@
 require 'csv'
-require_relative './movie.rb'
+require_relative './movie'
 
 class MovieCollection
   attr_accessor :colection
@@ -13,9 +13,9 @@ class MovieCollection
     end
   end
 
-  def initialize()
+  def initialize
     # Converts a pathname to an absolute pathname. First arg file name, second arg __dir__ - Returns the absolute path of the directory of the file from which this method is called.
-    file_path = File.expand_path("movies.txt", __dir__)
+    file_path = File.expand_path('movies.txt', __dir__)
     @collection = movies_parse(file_path)
   end
 
@@ -50,5 +50,9 @@ class MovieCollection
       str_value = el.send(field)
       acc[str_value] += 1
     end
+  end
+
+  def available_genres
+    all.map(&:genre).join(',').split(',').uniq
   end
 end
