@@ -5,7 +5,7 @@ first_film = movie_collection.all.first
 begin
   first_film.has_genre?('Comedy')
 rescue ArgumentError => e
-  puts e.messag
+  puts e.message
 end
 # p movie_collection.movie_sort(:date)
 # p movie_collection.movie_filter(genre: "Comedy")
