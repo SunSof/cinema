@@ -6,4 +6,3 @@ begin
 rescue ArgumentError => e
   puts e.message
 end
- 
