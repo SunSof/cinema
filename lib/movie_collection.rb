@@ -15,7 +15,7 @@ class MovieCollection
 
   def initialize
     # Converts a pathname to an absolute pathname. First arg file name, second arg __dir__ - Returns the absolute path of the directory of the file from which this method is called.
-    file_path = File.expand_path('movies.txt', __dir__)
+    file_path = File.expand_path('../data/movies.txt', __dir__)
     @collection = movies_parse(file_path)
   end
 
