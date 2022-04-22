@@ -1,6 +1,6 @@
 require 'rspec'
-require_relative '../lib/movie'
-require_relative '../lib/movie_collection'
+require_relative '../lib/padder/movie'
+require_relative '../lib/padder/movie_collection'
 
 movie_collection = MovieCollection.new
 first_film = movie_collection.all.first

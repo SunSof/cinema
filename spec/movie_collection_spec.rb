@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../lib/movie_collection'
+require_relative '../lib/padder/movie_collection'
 file = '../data/movies.txt'
 
 describe 'MovieCollection' do
