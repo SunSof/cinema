@@ -14,6 +14,10 @@ class Movie
     @actors = hash[:actors]
   end
 
+  def to_s
+    "#{@title} - #{@year} - #{@genre}"
+  end
+
   # 5.3.2 # 5.5.1
   def has_genre?(field, available_genres = %w[Comedy Crime Art])
     if available_genres.include?(field) == false
