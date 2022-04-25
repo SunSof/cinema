@@ -1,0 +1,17 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 200
+  
+AllCops:
+  Exclude:
+    - 'spec/movie_collection_spec.rb'
+    - 'spec/movie_spec.rb'
+    - 'cinematheque.gemspec'
+    - 'Gemfile'
+    - 'Gemfile.lock' 
+
