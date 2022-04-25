@@ -1,6 +1,7 @@
 require 'csv'
 require 'cinematheque/movie'
 module Cinematheque
+  # MovieCollection parses file to array of Movie objects and keep it
   class MovieCollection
     attr_accessor :colection
 
@@ -14,7 +15,9 @@ module Cinematheque
     end
 
     def initialize
-      # Converts a pathname to an absolute pathname. First arg file name, second arg __dir__ - Returns the absolute path of the directory of the file from which this method is called.
+      # Converts a pathname to an absolute pathname.
+      # First arg file name,
+      # second arg __dir__ or __FILE__ - Returns the absolute path of the dir, file from which this method is called.
       file_path = File.expand_path('./data/movies.txt')
       @collection = movies_parse(file_path)
     end

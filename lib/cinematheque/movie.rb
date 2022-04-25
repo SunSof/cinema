@@ -1,3 +1,4 @@
+# Movie stores information about one particular film
 class Movie
   attr_reader :links, :title, :year, :country, :date, :genre, :time, :rating, :directors, :actors
 
@@ -19,11 +20,9 @@ class Movie
   end
 
   # 5.3.2 # 5.5.1
-  def has_genre?(field, available_genres = %w[Comedy Crime Art])
-    if available_genres.include?(field) == false
-      raise ArgumentError, 'Genre does not exist'
-    else
-      @genre.include?(field)
-    end
+  def genre?(field, available_genres = %w[Comedy Crime Art])
+    return raise ArgumentError, 'Genre does not exist' if available_genres.include?(field) == false
+
+    @genre.include?(field)
   end
 end
