@@ -1,0 +1,12 @@
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'spec/movie_collection_spec.rb'
+    - 'spec/movie_spec.rb'
+    - 'cinematheque.gemspec'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+
+
