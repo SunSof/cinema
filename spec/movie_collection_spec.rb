@@ -1,14 +1,13 @@
 require 'rspec'
-require_relative '../lib/padder/movie_collection'
-file = '../data/movies.txt'
+require 'cinematheque/movie_collection'
 
 describe 'MovieCollection' do
   before(:each) do
-    @movie_collection = MovieCollection.new
+    @movie_collection = Cinematheque::MovieCollection.new
   end
   context '.movie_parse' do
     it 'return an array of movies' do
-      expect((@movie_collection).movies_parse(file).map(&:to_s).first(3)).to eq [
+      expect(@movie_collection.all.map(&:to_s).first(3)).to eq [
         'The Shawshank Redemption - 1994 - Crime,Drama', 'The Godfather - 1972 - Crime,Drama', 'The Godfather: Part II - 1974 - Crime,Drama'
       ]
     end

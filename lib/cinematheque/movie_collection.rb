@@ -1,7 +1,6 @@
 require 'csv'
-require_relative './movie'
-
-module Padder
+require 'cinematheque/movie'
+module Cinematheque
   class MovieCollection
     attr_accessor :colection
 
@@ -16,7 +15,7 @@ module Padder
 
     def initialize
       # Converts a pathname to an absolute pathname. First arg file name, second arg __dir__ - Returns the absolute path of the directory of the file from which this method is called.
-      file_path = File.expand_path('../../data/movies.txt', __dir__)
+      file_path = File.expand_path('./data/movies.txt')
       @collection = movies_parse(file_path)
     end
 
