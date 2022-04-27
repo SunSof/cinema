@@ -1,5 +1,5 @@
 require 'rspec'
-require 'cinematheque/movie_collection'
+# require 'cinematheque/movie_collection'
 
 describe 'MovieCollection' do
   before(:each) do
