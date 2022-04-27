@@ -1,0 +1,2 @@
+class Netflix < Movie
+end

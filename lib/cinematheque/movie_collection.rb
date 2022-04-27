@@ -1,5 +1,5 @@
 require 'csv'
-require 'cinematheque/movie'
+# require 'cinematheque/movie'
 module Cinematheque
   # MovieCollection parses file to array of Movie objects and keep it
   class MovieCollection
