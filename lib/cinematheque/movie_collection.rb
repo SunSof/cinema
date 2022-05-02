@@ -70,10 +70,7 @@ module Cinematheque
 
     def show
       random_movie = all.sample
-      time_now = Time.now
-      time_over = time_now + random_movie.time.to_i * 60
-      time_now_str, time_over_str = [time_now, time_over].map { |t| t.strftime('%H:%M') }
-      "Now showing: #{random_movie.title} (#{time_now_str}) - (#{time_over_str})"
+      random_movie.show
     end
   end
 end

@@ -14,8 +14,8 @@ describe 'MovieCollection' do
   end
 
   context '.create_movie' do 
-    it 'return an array of movies' do
-      expect(@movie_collection.create_movie({title:"The Shawshank Redemption", year: 1994, actors:"Tim Robbins,Morgan Freeman,Bob Gunton"}).show).to eq 'The Shawshank Redemption - Modern Movie, play: Tim Robbins,Morgan Freeman,Bob Gunton'
+    it 'return the movie depending on the year' do
+      expect(@movie_collection.create_movie({title:"The Shawshank Redemption", year: 1996})).to be_kind_of(ModernMovie)
     end
   end
 
@@ -48,11 +48,8 @@ describe 'MovieCollection' do
   end
 
   context '.show' do
-    before do
-      Timecop.freeze(2022, 10, 5, 15, 30, 0)
-    end
-    it 'return title, time to start and time to over' do
-      expect(@movie_collection.show.include?('Now showing:')).to eq true
+    it 'return title and period movie' do
+      expect(@movie_collection.show.class).to eq String
     end
   end
 end
