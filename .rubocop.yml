@@ -1,6 +1,9 @@
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Metrics/MethodLength:
+  Max: 50
+
 AllCops:
   Exclude:
     - 'spec/movie_collection_spec.rb'
