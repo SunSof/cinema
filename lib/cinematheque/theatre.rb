@@ -1,2 +1,2 @@
-class Theatre < Movie
+class Theatre < Cinematheque::MovieCollection
 end

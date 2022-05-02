@@ -20,18 +20,9 @@ class Movie
     "#{@title} - #{@year} - #{@genre}"
   end
 
-  # 5.3.2 # 5.5.1
   def genre?(field, available_genres = %w[Comedy Crime Art])
     return raise ArgumentError, 'Genre does not exist' if available_genres.include?(field) == false
 
     @genre.include?(field)
-  end
-
-  def show
-    # time_new = Time.new(2022, 4, 27, 13, 20, 0)
-    time_now = Time.now
-    time_over = time_now + @time.to_i * 60
-    time_now_str, time_over_str = [time_now, time_over].map { |t| t.strftime('%H:%M') }
-    "(#{@title}) (#{time_now_str}) - (#{time_over_str})"
   end
 end

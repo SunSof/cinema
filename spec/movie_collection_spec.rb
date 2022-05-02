@@ -2,14 +2,20 @@ require 'rspec'
 # require 'cinematheque/movie_collection'
 
 describe 'MovieCollection' do
-  before(:each) do
+  before do
     @movie_collection = Cinematheque::MovieCollection.new
   end
-  context '.movie_parse' do
+  context '.movie_parse' do 
     it 'return an array of movies' do
       expect(@movie_collection.all.map(&:to_s).first(3)).to eq [
         'The Shawshank Redemption - 1994 - Crime,Drama', 'The Godfather - 1972 - Crime,Drama', 'The Godfather: Part II - 1974 - Crime,Drama'
       ]
+    end
+  end
+
+  context '.create_movie' do 
+    it 'return an array of movies' do
+      expect(@movie_collection.create_movie({title:"The Shawshank Redemption", year: 1994, actors:"Tim Robbins,Morgan Freeman,Bob Gunton"}).show).to eq 'The Shawshank Redemption - Modern Movie, play: Tim Robbins,Morgan Freeman,Bob Gunton'
     end
   end
 
@@ -40,4 +46,14 @@ describe 'MovieCollection' do
       expect(@movie_collection.available_genres.first(3)).to eq %w[Crime Drama Action]
     end
   end
+
+  context '.show' do
+    before do
+      Timecop.freeze(2022, 10, 5, 15, 30, 0)
+    end
+    it 'return title, time to start and time to over' do
+      expect(@movie_collection.show.include?('Now showing:')).to eq true
+    end
+  end
 end
+

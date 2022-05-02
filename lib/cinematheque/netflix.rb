@@ -1,2 +1,5 @@
-class Netflix < Movie
-end
+# class Netflix < Cinematheque::MovieCollection
+#   def show
+#     @collection
+#   end
+# end

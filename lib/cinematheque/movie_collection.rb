@@ -1,5 +1,4 @@
 require 'csv'
-# require 'cinematheque/movie'
 module Cinematheque
   # MovieCollection parses file to array of Movie objects and keep it
   class MovieCollection
@@ -10,7 +9,7 @@ module Cinematheque
       CSV.parse(File.read(file_name), col_sep: '|', headers: hash_keys).map do |el|
         # make symbol
         hash = el.to_h.transform_keys(&:to_sym)
-        Movie.new(hash)
+        create_movie(hash)
       end
     end
 
@@ -22,12 +21,24 @@ module Cinematheque
       @collection = movies_parse(file_path)
     end
 
-    # 5.2.2
     def all
       @collection
     end
 
-    # 5.2.3
+    def create_movie(hash)
+      year = hash[:year].to_i
+      case year
+      when 1900..1945
+        AncientMovie.new(hash)
+      when 1945..1968
+        ClassicMovie.new(hash)
+      when 1968..2000
+        ModernMovie.new(hash)
+      when 2000..2022
+        NewMovie.new(hash)
+      end
+    end
+
     # guard clauses
     # (&field)
     def movie_sort(field)
@@ -36,7 +47,6 @@ module Cinematheque
       all.sort_by { |el|  el.send(field) }
     end
 
-    # 5.2.4
     def movie_filter(field)
       key = field.keys[0]
       value = field.values[0]
@@ -45,7 +55,6 @@ module Cinematheque
       all.filter { |el| el.send(key).include?(value) }
     end
 
-    # 5.2.5
     def movie_stats(field)
       return raise 'Wrong argument' unless all[0].respond_to?(field)
 
@@ -57,6 +66,14 @@ module Cinematheque
 
     def available_genres
       all.map(&:genre).join(',').split(',').uniq
+    end
+
+    def show
+      random_movie = all.sample
+      time_now = Time.now
+      time_over = time_now + random_movie.time.to_i * 60
+      time_now_str, time_over_str = [time_now, time_over].map { |t| t.strftime('%H:%M') }
+      "Now showing: #{random_movie.title} (#{time_now_str}) - (#{time_over_str})"
     end
   end
 end
