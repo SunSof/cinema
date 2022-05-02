@@ -15,7 +15,10 @@ describe 'MovieCollection' do
 
   context '.create_movie' do 
     it 'return the movie depending on the year' do
+      expect(@movie_collection.create_movie({title:"City Lights", year: 1931})).to be_kind_of(AncientMovie)
+      expect(@movie_collection.create_movie({title:"Angry Men", year: 1956})).to be_kind_of(ClassicMovie)
       expect(@movie_collection.create_movie({title:"The Shawshank Redemption", year: 1996})).to be_kind_of(ModernMovie)
+      expect(@movie_collection.create_movie({title:"Dark Knight", year: 2008})).to be_kind_of(NewMovie)
     end
   end
 
