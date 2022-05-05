@@ -1,18 +1,17 @@
 # Online theatre
 class Netflix < Cinematheque::MovieCollection
-  def show(**fields)
-    fields.reduce(all) do |acc, (key, value)|
-      return raise 'Wrong argument' unless acc[0].respond_to?(key)
-
-      filter(acc, key, value)
+  def show(**filters)
+    filters.reduce(all) do |acc, filter|
+      acc.select { |elem| apply_filter(elem, filter) }
     end
   end
 
   private
 
-  def filter(acc, key, value)
-    acc.filter do |el|
-      el.send(key).include?(value)
-    end
+  def apply_filter(element, filter)
+    key, value = filter
+    return raise 'Wrong argument' unless element.respond_to?(key)
+
+    element.send(key).include?(value)
   end
 end
