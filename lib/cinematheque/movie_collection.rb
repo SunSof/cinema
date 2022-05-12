@@ -42,35 +42,35 @@ module Cinematheque
     # guard clauses
     # (&field)
     def movie_sort(field)
-      return raise 'Wrong argument' unless all[0].respond_to?(field)
+      return raise('Wrong argument') unless all[0].respond_to?(field)
 
-      all.sort_by { |el|  el.send(field) }
+      all().sort_by { |el| el.send(field) }
     end
 
     def movie_filter(field)
       key = field.keys[0]
       value = field.values[0]
-      return raise 'Wrong argument' unless all[0].respond_to?(key)
+      return raise('Wrong argument') unless all[0].respond_to?(key)
 
-      all.filter { |el| el.send(key).include?(value) }
+      all().filter { |el| el.send(key).include?(value) }
     end
 
     def movie_stats(field)
-      return raise 'Wrong argument' unless all[0].respond_to?(field)
+      return raise('Wrong argument') unless all[0].respond_to?(field)
 
-      all.each_with_object(Hash.new(0)) do |el, acc|
+      all().each_with_object(Hash.new(0)) do |el, acc|
         str_value = el.send(field)
         acc[str_value] += 1
       end
     end
 
     def available_genres
-      all.map(&:genre).join(',').split(',').uniq
+      all().map(&:genre).join(',').split(',').uniq
     end
 
     def show
-      random_movie = all.sample
-      random_movie.show
+      random_movie = all().sample
+      random_movie.show()
     end
   end
 end

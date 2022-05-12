@@ -3,11 +3,12 @@ require 'cinematheque/movie'
 
 # NewMovie stores information about one particular film to 2000 before 2022
 class NewMovie < Movie
-  attr_reader :period
+  attr_reader :period, :price
 
   def initialize(hash)
     super
     @period = 'New'
+    @price = 5
   end
 
   def show

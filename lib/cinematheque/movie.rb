@@ -21,7 +21,7 @@ class Movie
   end
 
   def genre?(field, available_genres = %w[Comedy Crime Art])
-    return raise ArgumentError, 'Genre does not exist' if available_genres.include?(field) == false
+    return raise(ArgumentError, 'Genre does not exist') if available_genres.include?(field) == false
 
     @genre.include?(field)
   end
