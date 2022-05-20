@@ -39,7 +39,7 @@ class Netflix < Cinematheque::MovieCollection
   def apply_filter(element, filter)
     key, value = filter
     if key == :period
-      class_name = periods[value][:class_name]
+      class_name = periods.dig(value, :class_name)
       element.instance_of?(class_name)
     else
       return raise('Wrong argument') unless element.respond_to?(key)
