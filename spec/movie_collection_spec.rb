@@ -1,5 +1,5 @@
 require 'rspec'
-# require 'cinematheque/movie_collection'
+require 'cinematheque/movie_collection'
 
 describe 'MovieCollection' do
   before do
@@ -14,11 +14,28 @@ describe 'MovieCollection' do
   end
 
   context '.create_movie' do 
-    it 'return the movie depending on the year' do
-      expect(@movie_collection.create_movie({title:"City Lights", year: 1931})).to be_kind_of(AncientMovie)
-      expect(@movie_collection.create_movie({title:"Angry Men", year: 1956})).to be_kind_of(ClassicMovie)
-      expect(@movie_collection.create_movie({title:"The Shawshank Redemption", year: 1996})).to be_kind_of(ModernMovie)
-      expect(@movie_collection.create_movie({title:"Dark Knight", year: 2008})).to be_kind_of(NewMovie)
+    it "create ancient movie" do
+      movie = @movie_collection.create_movie({year: 1931})
+      expect(movie).to be_kind_of(AncientMovie)
+      expect(movie.price).to eq 1
+    end
+
+    it "create classic movie" do
+      movie = @movie_collection.create_movie({year: 1956})
+      expect(movie).to be_kind_of(ClassicMovie)
+      expect(movie.price).to eq 1.5
+    end
+
+    it "create modern movie" do
+      movie = @movie_collection.create_movie({year: 1996})
+      expect(movie).to be_kind_of(ModernMovie)
+      expect(movie.price).to eq 3
+    end
+
+    it "create new movie" do
+      movie = @movie_collection.create_movie({year: 2010})
+      expect(movie).to be_kind_of(NewMovie)
+      expect(movie.price).to eq 5
     end
   end
 

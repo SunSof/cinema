@@ -4,8 +4,19 @@ Style/FrozenStringLiteralComment:
 Metrics/MethodLength:
   Max: 50
 
+Style/MethodCallWithoutArgsParentheses:
+   Enabled: false 
+
+Style/MultilineBlockChain:
+  Enabled: false  
+  
 AllCops:
   Exclude:
+    - 'spec/netflix_spec.rb'
+    - 'spec/new_movie_spec.rb'
+    - 'spec/modern_movie_spec.rb'
+    - 'spec/classic_movie_spec.rb'
+    - 'spec/ancient_movie_spec.rb'
     - 'spec/movie_collection_spec.rb'
     - 'spec/movie_spec.rb'
     - 'cinematheque.gemspec'
