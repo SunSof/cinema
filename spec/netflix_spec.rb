@@ -3,23 +3,19 @@ require 'cinematheque/netflix'
 
 describe 'Netflix' do
   before do
-    @movie = Netflix.new
+    @netflix = Netflix.new()
   end
   context '.show' do
-    it 'return array of movie filtred to genre, period, country' do
-      expect(@movie.show(genre: 'Comedy', period: 'Classic', country: 'USA').to_s.class).to eq String
+    it 'pay' do
+      expect(@netflix.increase_balance(10)).to eq 10
+      movie = @netflix.show({genre: 'Comedy', country: 'USA', period: :classic})
+      expect(movie.price).to eq 1.5
+      expect(@netflix.balance).to eq 8.5
     end
-  end
-  context 'pay' do
-  it 'return balance' do
-    expect(@movie.increase_balance(10)).to eq 10
-    expect(@movie.decrease_balance().class).to eq Integer
-    expect(@movie.balance().class).to eq Integer
-  end
-  end
-  context '.film_price' do 
-    it 'return price' do 
-      expect(@movie.film_price().class).to eq Integer
-    end
-  end
+  end 
+  context '.how_much?' do 
+    it 'return film price or not have this film' do 
+      expect(@netflix.how_much?('The Terminator')).to eq 3
+    end 
+  end 
 end

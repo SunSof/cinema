@@ -1,3 +1,4 @@
+require 'cinematheque/movie_collection'
 # Online theatre
 class Netflix < Cinematheque::MovieCollection
   attr_accessor :balance
@@ -7,27 +8,29 @@ class Netflix < Cinematheque::MovieCollection
     @balance = 0
   end
 
-  # filtered by the given parameters
-  # return a random movie with the highest rating
-  def show(**filters)
-    filters.reduce(all().shuffle) do |acc, filter|
-      acc.select { |elem| apply_filter(elem, filter) }
-    end
-           .sort_by { |el| el.rating.to_f * rand() }.last(1)
-  end
-
-  def film_price
-    show.map(&:price).join.to_i
-  end
-
   def increase_balance(coins)
     @balance += coins
   end
 
-  def decrease_balance
-    return raise('Not enough money') if @balance < film_price()
+  # filtered by the given parameters
+  # return a random movie with the highest rating
+  def show(**filters)
+    film = filters.reduce(all().shuffle) do |acc, filter|
+      acc.select { |elem| apply_filter(elem, filter) }
+    end
+                  .max_by { |el| el.rating.to_f * rand() }
+    return raise('Not movies this filters') if film.nil?
+    return raise('Not enough money') if @balance < film.price
 
-    @balance -= film_price()
+    decrease_balance(film)
+    film
+  end
+
+  def how_much?(title)
+    film = all().find { |el| el.title.eql?(title) }
+    return raise('No movies with that name') unless film
+
+    film.price
   end
 
   private
@@ -35,8 +38,17 @@ class Netflix < Cinematheque::MovieCollection
   # check if the parameter exists and is comparable to the value
   def apply_filter(element, filter)
     key, value = filter
-    return raise('Wrong argument') unless element.respond_to?(key)
+    if key == :period
+      class_name = periods[value][:class_name]
+      element.instance_of?(class_name)
+    else
+      return raise('Wrong argument') unless element.respond_to?(key)
 
-    element.send(key).include?(value)
+      element.send(key).include?(value)
+    end
+  end
+
+  def decrease_balance(film)
+    @balance -= film.price
   end
 end

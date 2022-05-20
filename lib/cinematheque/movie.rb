@@ -1,9 +1,9 @@
 require 'time'
 # Movie stores information about one particular film
 class Movie
-  attr_reader :links, :title, :year, :country, :date, :genre, :time, :rating, :directors, :actors
+  attr_reader :links, :title, :year, :country, :date, :genre, :time, :rating, :directors, :actors, :price
 
-  def initialize(hash)
+  def initialize(hash, price)
     @links = hash[:links]
     @title = hash[:title]
     @year = hash[:year]
@@ -14,6 +14,7 @@ class Movie
     @rating = hash[:rating]
     @directors = hash[:directors]
     @actors = hash[:actors]
+    @price = price
   end
 
   def to_s

@@ -4,7 +4,7 @@ require 'cinematheque/modern_movie'
 describe 'ModernMovie' do
   context '.show' do
     before do
-      @modern_movie = ModernMovie.new({ title: 'Eyes Wide Shut', actors: 'Tom Cruise, Nicole Kidman, Madison Eginton' })
+      @modern_movie = ModernMovie.new({ title: 'Eyes Wide Shut', actors: 'Tom Cruise, Nicole Kidman, Madison Eginton' }, 3)
     end
     it 'return old movie and year' do
       expect(@modern_movie.show).to eq 'Eyes Wide Shut - Modern Movie, play: Tom Cruise, Nicole Kidman, Madison Eginton'
