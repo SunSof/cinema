@@ -1,14 +1,15 @@
-# require 'rspec'
-# require 'cinematheque/theatre'
+require 'rspec'
+require 'cinematheque/theatre'
 
-# describe 'Theatre' do
-#   context '.show' do
-#     before do
-#       Timecop.freeze(2022, 10, 5, 15, 30, 0)
-#       @movie = Theatre.new({ title: 'Shawshank Redemption', time: '142 min' })
-#     end
-#     it 'return title, time to start and time to over' do
-#       expect(@movie.show).to eq '(Shawshank Redemption) (15:30) - (17:52)'
-#     end
-#   end
-# end
+describe 'Theatre' do
+  before do
+    @theatre = Theatre.new
+  end
+  context '.show' do
+    it 'return the movie depending on the time' do
+      expect(@theatre.show('12:00').first.class).to eq AncientMovie
+      expect(@theatre.show('16:00').first.genre.include?('Comedy') || @theatre.show('16:00').first.genre.include?('Adventure')).to eq true
+      expect(@theatre.show('20:00').first.genre.include?('Drama') || @theatre.show('20:00').first.genre.include?('Horror')).to eq true
+    end
+  end
+end
