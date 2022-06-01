@@ -41,23 +41,26 @@ describe 'MovieCollection' do
 
   context '.movie_sort' do
     it 'return an array of movies sorted by date' do
-      expect((@movie_collection).movie_sort(:date).map(&:to_s).first(3)).to eq [
+      expect(@movie_collection.movie_sort(:date).map(&:to_s).first(3)).to eq [
         'The Kid - 1921 - Comedy,Drama,Family', 'The Gold Rush - 1925 - Adventure,Comedy,Drama', 'The General - 1926 - Action,Adventure,Comedy'
       ]
+      expect{@movie_collection.movie_sort(:name)}.to raise_exception('Wrong argument')
     end
   end
 
   context '.movie_filter' do
     it 'return an array of movies filtered by key and value' do
-      expect((@movie_collection).movie_filter(genre: 'Comedy').map(&:to_s).first(3)).to eq [
+      expect(@movie_collection.movie_filter(genre: 'Comedy').map(&:to_s).first(3)).to eq [
         'Life Is Beautiful - 1997 - Comedy,Drama,Romance', 'City Lights - 1931 - Comedy,Drama,Romance', 'The Intouchables - 2011 - Biography,Comedy,Drama'
       ]
+      expect{@movie_collection.movie_filter(name:'Abc')}.to raise_exception('Wrong argument')
     end
   end
 
   context '.movie_stats' do
     it 'returning statistics, how many films are made in a year' do
-      expect((@movie_collection).movie_stats(:year).first(3)).to eq [['1994', 5], ['1972', 1], ['1974', 2]]
+      expect(@movie_collection.movie_stats(:year).first(3)).to eq [['1994', 5], ['1972', 1], ['1974', 2]]
+      expect{@movie_collection.movie_stats(:name)}.to raise_exception('Wrong argument')
     end
   end
 

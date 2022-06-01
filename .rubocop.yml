@@ -10,8 +10,12 @@ Style/MethodCallWithoutArgsParentheses:
 Style/MultilineBlockChain:
   Enabled: false  
   
+Metrics/AbcSize:
+  Enabled: false
+
 AllCops:
   Exclude:
+    - 'spec/theatre_spec.rb'
     - 'spec/netflix_spec.rb'
     - 'spec/new_movie_spec.rb'
     - 'spec/modern_movie_spec.rb'
