@@ -28,7 +28,8 @@ class Theatre < Cinematheque::MovieCollection
     return raise('No film with that title') if film.nil?
 
     find_t = schedule_map().values.find { |val| val[:matcher].call(film) }
-    # add raise no filtred film, test raise 
+    return raise('No filters for this film') if find_t.nil?
+
     first = find_t[:time].first
     film_time = film.time.to_i
     hour = ((first * 60) + film_time) / 60
