@@ -75,5 +75,29 @@ describe 'MovieCollection' do
       expect(@movie_collection.show.class).to eq String
     end
   end
+
+  context '.each' do 
+    it 'enumerable module each' do 
+      expect(@movie_collection.each{ |movie| movie}.class).to eq Array
+    end 
+  end
+
+  context '.map' do 
+    it 'enumerable module map' do 
+      expect(@movie_collection.map(&:title).first).to eq "The Shawshank Redemption"
+    end 
+  end
+  
+  context '.select' do 
+    it 'enumerable module select' do 
+      expect(@movie_collection.select { |movie| movie.title.include?("The")}.first.title).to eq "The Shawshank Redemption"
+    end 
+  end 
+
+  context '.reject' do 
+    it 'enumerable module reject' do 
+      expect(@movie_collection.reject {|movie| movie.country.include?("USA")}.first.title).to eq "The Good, the Bad and the Ugly"
+    end 
+  end 
 end
 

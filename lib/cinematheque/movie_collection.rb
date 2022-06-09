@@ -8,6 +8,7 @@ module Cinematheque
   class MovieCollection
     attr_accessor :colection
 
+    include Enumerable
     # if nil then assign value
     def periods
       @periods ||= {
@@ -37,6 +38,39 @@ module Cinematheque
 
     def all
       @collection
+    end
+
+    def each
+      for movie in @collection do
+        yield movie
+      end
+    end
+
+    def map
+      array = []
+      for movie in @collection do
+        film = yield movie
+        array << film
+      end
+      array
+    end
+
+    def select
+      array = []
+      for movie in @collection do
+        film = yield movie
+        array << movie if film == true
+      end
+      array
+    end
+
+    def reject
+      array = []
+      for movie in @collection do
+        film = yield movie
+        array << movie if film == false
+      end
+      array
     end
 
     # guard clauses
